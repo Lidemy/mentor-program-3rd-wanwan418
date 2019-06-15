@@ -1,0 +1,40 @@
+.calculator {
+	background-color: #036ef46b;
+	border-radius: 10px;
+	padding: 30px;
+	padding-top: 0px;
+	display: inline-block;
+}
+
+.cal__title {
+	font-size: 20px;
+	color: white;
+	text-align: center;
+	margin: 10px;
+}
+
+.cal__content {
+/*	background-color: #0c81fb6e;*/
+	margin: 5px;
+}
+
+input {
+	font-size: 20px;
+	padding: 15px;
+	border: 0 none;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color: #a9e3ff;
+	color: blue;
+	width: 50px;
+}
+
+input:hover {
+	color: white;
+}
+
+.display {
+	border-radius: 3px;
+	width: 182px;
+	color: blue;
+}

@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+
+body {
+  font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+
+.bgTop {
+  background-image: url(https://lh4.googleusercontent.com/sAvtic6WzLRcGC485d2irc6Q36VS9GaiIj2TjL9AkbD1t3RjwacfNkJmmUe9fh9c0WV-ZVKQcw=w1200);
+  background-size: cover;
+  background-position: center;
+  color: rgba(255, 255, 255, 1);
+  height: 300px;
+  margin: -10px;
+}
+
+.bgButtom {
+  background-color:#ffe7e7;
+  margin: -10px;
+  height: 1600px;
+}
+
+.container {
+  width: 640px;
+  height: 100%;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);;
+  margin: 0px auto;
+  margin-top: -1900px;
+  background-color: white;
+}
+
+.header {
+  padding: 20px;
+}
+
+.header__title {
+  font-size: 34px;
+  margin: 20px 10px;
+}
+
+.header__content {
+  margin: 5px;
+  padding-left: 8px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.content__hint > p {
+  padding-left: 8px;
+}
+
+.content__describe {
+  margin: 5px;
+  padding-left: 6px;
+  font-size: 14px;
+}
+
+.header__footer {
+  color: red;
+  font-size: 13px;
+  padding-left: 13px;
+}
+
+.content {
+  padding: 5px 20px;
+  margin: 20px;
+}
+
+.content__title {
+  margin: 20px 10px;
+  font-size: 20px;
+}
+
+input[type="text"] {
+  margin: 10px 10px;
+  font-size: 16px;
+  height: 24px;
+  width: 282px;
+  border-bottom: 0.5px solid #DDDDDD; 
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+
+input[type="text"]:focus{
+  outline: none;
+  border-bottom: 2px solid red;
+  border-radius:0;
+  transition: border-bottom 0.4s;
+}
+
+.button {
+  width: 90px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: #1a73e8;
+  color: white;
+  margin-left: 45px;
+}
+
+.footer {
+  margin: 25px;
+  padding-left: 20px;
+  font-size: 10px;
+  color: gray;
+}
+
+span {
+  color:red;
+  font-size:24px;
+}
+
+input[type="radio"] {
+  display: inline;
+  font: 20px;
+  margin: 10px 10px;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 992px) {
+  .container {
+    width: 70%;
+    height: 100%;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);;
+    margin: 0px auto;
+    margin-top: -1900px;
+    background-color: white;
+  }
+
+  .container > div {
+    width: 70%;
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);;
+    margin: 0px auto;
+    margin-top: -1900px;
+    background-color: white;
+  }
+
+  .container > div {
+    width: 50%;
+  }
+}
