@@ -1,0 +1,27 @@
+body {
+    font-family: 'Encode Sans Expanded', sans-serif;
+  }
+  nav {
+    background: gray;
+    margin: -8px;
+    font-size: 30px;
+    text-align: center;
+    padding: 15px;
+    color: white;
+  }
+  
+  .main {
+    position: relative;
+    left: 400px;
+    top: 250px;
+  }
+  
+  .again {
+    border-radius: 4px;
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+    color: white;
+    background-color: blue; 
+    font-family: 'Encode Sans Expanded', sans-serif;
+  }
