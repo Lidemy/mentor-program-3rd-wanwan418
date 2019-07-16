@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .price__container {
+      display: flex;
+      margin-top: 15%;
+      flex-direction: column;
+      align-items: center;
+    }
+    .img__container img {
+      width: 50%;
+      height: 50%;
+    }
+    .prize__text {
+      font-size: 40px;
+      color: red;
+    }
+  </style>
+</head>
+
+
+<body>
+  <h1>來抽獎！</h1>
+  <input type="button" value="按下去吧！" class="Btn">
+
+  <div class="price__container">
+    <div class="prize__text"></div>
+    <div class="img__container"></div>
+  </div>
+</body>
+<script>
+  const request = new XMLHttpRequest();
+
+  document.querySelector('.Btn').addEventListener('click', () => {
+    request.onload = function () {
+      if (request.status >= 200 && request.status < 400) {
+        const response = request.responseText;
+        const json = JSON.parse(response);
+        const body = document.querySelector("body");
+        const text = document.querySelector(".prize__text");
+        const img_content = document.querySelector(".img__container");
+        const links = [
+        'https://media.bnextmedia.com.tw/image/album/2018-12/img-1544157756-86305.jpg',
+        'https://www.lg.com/tw/images/tvs/42le5500/gallery/large04.jpg',
+        'https://www.techadvisor.co.uk/cmsdata/features/3655343/how-to-skip-ads-on-youtube-logo-_thumb800.jpg'];
+        
+        switch (json.prize) {
+          case "FIRST":
+            const img = '<img src="' + links[0] + '">';
+            text.innerHTML = "恭喜你中頭獎了！日本東京來回雙人遊！";
+            img_content.innerHTML = img;
+            body.style.background = 'blue';
+            break;
+          case "SECOND":
+            const img2 = '<img src="' + links[1] + '">';
+            text.innerHTML = "二獎！90 吋電視一台！";
+            img_content.innerHTML = img2;
+            break;
+          case "THIRD":
+            const img3 = '<img src="' + links[2] + '">';
+            text.innerHTML = "恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！";
+            img_content.innerHTML = img3;
+            break;
+          case "NONE":
+            text.innerHTML = "<div style='color:white;'>銘謝惠顧<div>";
+            body.style.background = 'black';
+        }
+      } else {
+        alert("系統不穩定，請再試一次");
+      }
+    }
+  
+    request.onerror = function () {
+      console.log('err');
+    }
+  
+    request.open('GET', 'https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery', true);
+    request.send();
+  });
+
+
+
+  
+</script>
+
+</html>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 require_once('./conn.php');
 ?>
@@ -25,6 +26,5 @@ require_once('./conn.php');
       </div>
     </form>
   </div>
-
 </body>
 </html>

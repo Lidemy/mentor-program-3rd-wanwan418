@@ -5,6 +5,7 @@
 |  id  |    integer      | 留言 id     |
 |  username |  varchar(128) | 使用者名稱 |
 |  content  |  text    |  留言內容  |
+<<<<<<< HEAD
 |  created_at   |   DATETIME   |  留言時間 |  
 
 
