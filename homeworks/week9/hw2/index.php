@@ -1,6 +1,8 @@
 <?php
-  $is_login = false;
-  $user_id = '';
+
+  require_once('./check_login.php');
+  require_once('./conn.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -10,56 +12,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>留言板</title>
+  <title>Board</title>
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|Roboto+Mono|Ubuntu&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <div class="msgMain">
+  <?php include_once('templates/navbar.php')?>
+  <div class="container">
+    <div class="boardIntro">本站為練習用網站，因教學用途刻意忽略資安的實作，註冊時請勿使用任何真實的帳號或密碼</div>
     <?php
-    // 判斷使用者是否登入
-      if(!$is_login) {
-    ?>
-      <a href="register.php">register</a>
-      <a href="login.php">login in</a>
-    <?php
+      if ($user) {
+        echo "<h1>Hello," . $user . "</h1>";
       } else {
-    ?>
-      <a href="logout.php">logout</a>
-    <?php 
+        echo "Please Login in or Register";
       }
     ?>
-
-    <div class="msgTitle">
-      <h1>我很醜，溫柔的留言板</h1>
-      <p>本站為練習用網站，因教學用途刻意忽略資安的實作，註冊時請勿使用任何真實的帳號或密碼</p>
-    </div>
-    <form action="add_comment" method="post" class="msgForm">
-      <textarea name="msgContent" id="msgContent" cols="30" rows="10" placeholder="來留言"></textarea>
-      <input type="hidden" name="parent_id" value="0" />
-      <?php
-        if($is_login) {
-          echo "<input type='submit' class='msgBtn' value='submit' />";
-        } else {
-          echo "<input type='submit' class='msgBtn' value='login in' disabled />";
-        }
+    <form action="./add_comment.php" method="post" class="form">
+      <div class="commentTitle">歡迎說說話</div>
+      <textarea class="commentContent" placeholder="在這裡輸入吧" rows="8" cols="70" name="content"></textarea>
+      <?php if($user) {
+        echo "<input type='submit' value='大力按下去' class='buttonMain'>";
+      } else {
+        echo "<input type='button' value='請先註冊或登入' class='buttonMain'>";
+      }
       ?>
     </form>
 
-    <?php
-    // 顯示所有留言
-      require_once('conn.php');
-      $sql = "SELECT wanwan418_comments.id, wanwan418_comments.content, wanwan418_comments.created_at, wanwan418_users.nickname FROM wanwan418_comments LEFT JOIN wanwan418_users ON wanwan418_comments.user_id = wanwan418_users.id WHERE parent_id = 0 ORDER BY created_at DESC";
-      $result = $conn->query($sql);
-
-      if ($result) {
-        while($row = $rseult->fetch_assoc()) {
-          require('template_comment.php');
+    <div class="comments">
+      <?php
+        $sql = "SELECT c.content, c.created_at, u.nickname FROM wanwan418_comments as c LEFT JOIN wanwan418_users as u ON c.username = u.username
+        ORDER BY created_at DESC";
+        $result = $conn->query($sql);
+        if($result) {
+          while($row = $result->fetch_assoc()) {
+          ?>
+        <div class="comment"> 
+          <div class="commentTime"><?php echo $row['created_at']?></div>
+          <div class="commentUser"><?php echo $row['nickname']?> 說</div>
+          <div class="commentMsg"><?php echo $row['content']?></div>
+        </div>  
+          <?php
+          }
         }
-      }
-    ?>
-
+        ?>
+    </div>
   </div>
 
-</body>
 
+
+</body>
 </html>
