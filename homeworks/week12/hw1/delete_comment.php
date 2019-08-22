@@ -9,9 +9,11 @@ if (
   
     $id = $_POST['id'];
 
-    $sql = "DELETE FROM wanwan418_comments WHERE id = $id OR parent_id = $id";
-    
-    if($conn->query($sql)) {
+    $stmt = $conn->prepare("DELETE FROM wanwan418_comments WHERE id = ? OR parent_id = ?");
+    $stmt->bind_param("ss", $id, $id);
+    $result = $stmt->execute();
+
+    if($result) {
       header('Location: ./index.php');
     } else {
       printMsg($conn->error, './index.php');

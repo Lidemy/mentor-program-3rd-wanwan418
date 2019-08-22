@@ -10,9 +10,11 @@ if (
     $content = $_POST['content'];
     $parent_id = $_POST['parent_id'];
 
-    $sql = "INSERT INTO wanwan418_comments(username, content, parent_id) VALUES ('$user','$content', $parent_id)";
-    
-    if($conn->query($sql)) {
+    $stmt = $conn->prepare("INSERT INTO wanwan418_comments(username, content, parent_id) VALUES (?,?,?)");
+    $stmt->bind_param("sss",$username,$content,$parent_id);
+    $result = $stmt->execute();
+
+    if($result) {
       printMsg('新增成功！','./index.php');
     } else {
       printMsg($conn->error, './index.php');
