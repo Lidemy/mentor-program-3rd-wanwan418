@@ -72,7 +72,7 @@
           ?>
         <div class="comment"> 
           <div class="commentTime"><?php echo $row['created_at']?></div>
-          <div class="commentUser"><?php echo $row['nickname']?> 說</div>
+          <div class="commentUser"><?php echo htmlspecialchars($row['nickname'],ENT_QUOTES, 'UTF-8')?> 說</div>
           <div class="commentMsg"><?php echo htmlspecialchars($row['content'],ENT_QUOTES, 'UTF-8')?></div>
            
             <?php 
@@ -100,9 +100,9 @@
                 echo "<div class='commentsChild'>";
               }
               echo "<div class='SubcommentTime'>" . $row_sub['created_at'] . "</div>";
-              echo "<div class='SubcommentUser'>" . $row_sub['nickname'] . " 回覆" . "</div>";
+              echo "<div class='SubcommentUser'>" . htmlspecialchars($row_sub['nickname'],ENT_QUOTES, 'UTF-8') . " 回覆" . "</div>";
               echo "<div class='SubcommentMsg'>" . htmlspecialchars($row_sub['content'],ENT_QUOTES, 'UTF-8') . "</div>";
-              if ($user === $row_sub['username']) {
+              if ($user === $row_sub['username']) { 
                 echo editBtn($row_sub['id']);
                 echo deleteBtn($row_sub['id']);
               }

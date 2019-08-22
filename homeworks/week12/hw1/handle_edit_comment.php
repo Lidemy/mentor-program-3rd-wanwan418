@@ -10,9 +10,10 @@ if (
     $content = $_POST['content'];
     $id = $_POST['id'];
 
-    $sql = "UPDATE wanwan418_comments SET content='$content' WHERE id = $id ";
-    
-    if($conn->query($sql)) {
+    $stmt = $conn->prepare("UPDATE wanwan418_comments SET content=? WHERE id =?");
+    $stmt->bind_param("ss", $content, $id);
+    $result = $stmt->execute();
+    if($result) {
       printMsg('修改成功！','./index.php');
     } else {
       printMsg($conn->error,$_SERVER['HTTP_REFERER']);
