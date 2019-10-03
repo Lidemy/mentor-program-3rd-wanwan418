@@ -30,8 +30,6 @@ request.onload = () => {
 
       document.querySelector('.main-page').appendChild(div);
     });
-  } else {
-    alert('系統不穩定，請再試一次');
   }
 };
 
